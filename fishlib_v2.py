@@ -1,5 +1,5 @@
 """
-fishlib_v2.py -- solo extension of fishlib.py (see README.md for attribution).
+fishlib_v2.py - solo extension of fishlib.py (see README.md for attribution).
 
 Adds two things the original course project's report explicitly left open:
 
@@ -16,12 +16,12 @@ Adds two things the original course project's report explicitly left open:
    augmentation applied extra contrast/brightness to only the 8 artificially
    thinned species, which the original report diagnosed as having shifted
    those classes' training distribution away from the untouched val/test
-   distribution -- explaining the ~13pt F1 drop it caused. realistic_augment()
+   distribution, explaining the ~13pt F1 drop it caused. realistic_augment()
    tests that diagnosis directly by applying augmentation symmetrically
    across every class (no targeting), using transforms with a physical
-   reason to appear in underwater citizen-science photos -- color-cast
-   jitter, mild blur, occlusion -- rather than generic contrast/brightness.
-
+   reason to appear in underwater citizen-science photos: color-cast
+   jitter, mild blur, occlusion, rather than generic contrast/brightness.
+   
 Both additions are designed to slot into fishlib.py's existing conventions
 (SEED, IMG_SIZE, BATCH, AUTOTUNE, BACKBONES, _trunk) rather than duplicate
 them.
@@ -99,7 +99,7 @@ def _geo_temporal_encode(rows):
 
 class ColorCastJitter(layers.Layer):
     """Per-image RGB channel shift simulating underwater blue/green color
-    cast, which varies by water depth, turbidity, and time of day -- a real
+    cast, which varies by water depth, turbidity, and time of day, a real
     source of appearance variation in citizen-science underwater photos that
     generic contrast/brightness jitter doesn't specifically target."""
 
@@ -123,7 +123,7 @@ class ColorCastJitter(layers.Layer):
 class MildBlur(layers.Layer):
     """Applies a small fixed Gaussian-like blur to a random subset of images
     each batch, simulating the focus/motion softness common in handheld
-    underwater photography -- unlike flip/rotation/zoom, which assume a
+    underwater photography, unlike flip/rotation/zoom, which assume a
     sharp source image."""
 
     def __init__(self, prob=0.3, **kw):
@@ -152,7 +152,7 @@ class MildBlur(layers.Layer):
 
 class RandomOcclusion(layers.Layer):
     """Zeroes a random rectangular patch per image, simulating partial
-    occlusion by other fish, coral, or the frame edge -- common in
+    occlusion by other fish, coral, or the frame edge, common in
     unconstrained underwater photos, which is exactly the failure mode
     generic contrast/brightness jitter does nothing to prepare a model for."""
 
@@ -198,8 +198,8 @@ def realistic_augment():
     no LOW_DATA targeting. Includes fishlib's own base flip/rotation/zoom
     (default_augment(extra=False)) so this is a complete, standalone policy
     directly comparable to fishlib.default_augment(extra=True) (the
-    original's targeted policy, reproduced for comparison in train_v2.ipynb)
-    -- only the extra tier differs between the two."""
+    original's targeted policy, reproduced for comparison in train_v2.ipynb),
+    only the extra tier differs between the two."""
     return keras.Sequential([
         fishlib.default_augment(extra=False),
         ColorCastJitter(strength=20.0),
@@ -286,7 +286,7 @@ def build_fused_model(backbone='efficientnetb0', mode='frozen', n_classes=16,
                        branch='both', dense=256, dropout=0.4, seed=None):
     """Three architectures sharing everything (dense width, dropout,
     backbone/mode when the image branch is present) except which branch(es)
-    feed the head -- so a difference in result is attributable to the input
+    feed the head, so a difference in result is attributable to the input
     signal, not an incidental architecture change. branch='image' reduces to
     fishlib.build_model()'s own architecture; branch='metadata' is a small
     MLP on the 7-d encoding alone; branch='both' concatenates both embeddings
