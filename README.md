@@ -93,7 +93,9 @@ reef-fish-species-classifier/
 
 ## Data
 
-Images are citizen-science observations pulled from the iNaturalist API under CC0/CC-BY/CC-BY-NC/CC-BY-SA/CC-BY-NC-SA licenses. Per the original project's data ethics review, full redistribution of the source images isn't appropriate given the mixed license terms (~86% are CC-BY-NC, non-commercial only) and potential contributor-privacy considerations around retained metadata, so this repo ships code, methodology, and results, not the dataset itself. To reproduce: use the original `build_dataset.py`/`make_splits.py` pipeline (or your own saved `data/images/` + `splits.csv` from the original project) to regenerate a locally-held copy.
+Images are "research grade" citizen-science observations pulled from the iNaturalist API under Creative Commons or public-domain licenses (CC0/CC-BY/CC-BY-NC/CC-BY-SA/CC-BY-NC-SA). Per the original project's data ethics review, full redistribution of the source images isn't appropriate given the mixed license terms (~86% are CC-BY-NC, non-commercial only) and potential contributor-privacy considerations around retained metadata, so this repo ships code, methodology, and results, not the dataset itself. To reproduce: use the original `build_dataset.py`/`make_splits.py` pipeline (or your own saved `data/images/` + `splits.csv` from the original project) to regenerate a locally-held copy.
+
+**Species selection.** The 16-species set wasn't chosen by simple popularity. The original team project's `species_recon.py` pulled observation counts and family membership for the most-observed research-grade Actinopterygii species on iNaturalist, then scored candidate sets against two structural criteria the project's design depends on: enough observations per species to support the augmentation experiment (Arm B), and multiple species per family so the family-to-species hierarchy (Arm C) has something meaningful to resolve. The chosen set covers 16 species across 4 families, 4 species per family. All four candidate sets considered are preserved in `candidate_sets.csv` (original team project repo) for provenance.
 
 ## Reproducing this
 
