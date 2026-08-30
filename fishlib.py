@@ -4,7 +4,7 @@ training/eval/statistics helpers), unmodified except for this header.
 
 Authored solely by Abi Kambanis (per file ownership in the team's shared
 Drive), as part of a 3-person team project (Dylan Goldrick, Mario Corado,
-Abi Kambanis) for a course at the University of Rhode Island -- the
+Abi Kambanis) for a course at the University of Rhode Island - the
 modeling experiments, results, and written report built on top of this
 library were produced collaboratively by the team. Reproduced here
 unchanged because fishlib_v2.py imports and extends it directly -- see
