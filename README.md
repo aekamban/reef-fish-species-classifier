@@ -422,7 +422,7 @@ I include this limitation explicitly because reproducibility includes documentin
 
 ## Project context
 
-I developed this project for DSP 566: Advanced Topics in Machine Learning in the University of Rhode Island's M.S. in Data Science program and continued extending it independently after the course project was completed.
+I developed this project for DSP 566: Advanced Topics in Machine Learning in the University of Rhode Island's M.S. in Data Science program and continued extending it independently after the course project was completed. I found the dataset, proposed the topic, and conducted a literature review.
 
 I authored the project's data collection, preprocessing, modeling, evaluation, and extension code. For the original course submission, classmates Mario Corado and Dylan Goldrick helped run experiments and collaborated with me on the written report and presentation.
 
